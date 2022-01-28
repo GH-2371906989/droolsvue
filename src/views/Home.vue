@@ -1,25 +1,26 @@
 <template>
 	<div class="home">
-		<el-row :gutter="20">
+		<el-row :gutter="15">
 			<el-col :span="10">
-				<el-input type="textarea" :rows="30" placeholder="请输入内容" v-model="entity">
-				</el-input>
+				<JsonEditor v-model="entity" :mode="'code'">
+				</JsonEditor>
 			</el-col>
 			<el-col :span="4">
 				<el-button type="primary" round @click="execute">执行</el-button>
 			</el-col>
 			<el-col :span="10">
-				<el-input type="textarea" :rows="30" placeholder="请输入内容" v-model="result">
-				</el-input>
+				<JsonEditor v-model="result" :mode="'code'">
+				</JsonEditor>
 			</el-col>
 		</el-row>
-
+		
 
 
 	</div>
 </template>
 
 <script>
+	import JsonEditor from './JsonEduto'
 	export default {
 		name: 'Home',
 		data() {
@@ -28,20 +29,22 @@
 				result: null
 			}
 		},
-		components: {},
+		components: {
+			JsonEditor
+		},
 		mounted() {
 
 			this.dApi.getEntieyCode()
 				.then(data => {
-					this.entity = JSON.stringify(data.data, null, " ")
+					this.entity = data.data
 				})
 		},
 		methods: {
 			execute() {
 				
-				this.dApi.execute(this.entity)
+				this.dApi.execute(JSON.stringify(this.entity))
 					.then(res => {
-						this.result = JSON.stringify(res.data, null, " ")
+						this.result = res.data
 					})
 
 			}
