@@ -8,6 +8,13 @@ function getEntieyCode(){
     })
 }
 
+function getDrl(id){
+    return request({
+        url: '/getDrl/'+id,
+        method: 'get'
+    })
+}
+
 function execute(data){
 	return request({
 	    url: '/execute',
@@ -18,6 +25,7 @@ function execute(data){
 }
 var funcs={
 	getEntieyCode,
-	execute
+	execute,
+	getDrl
 }
 export default funcs

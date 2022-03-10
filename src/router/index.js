@@ -9,6 +9,10 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },{
+    path: '/editer',
+    name: 'Editer',
+    component: () => import('../views/Editer')
   }
 ]
 
