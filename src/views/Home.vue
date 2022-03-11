@@ -94,7 +94,7 @@
 		},
 		methods: {
 			useEditer(){
-				this.$router.push({ name: "Editer", params: {} });
+				this.$router.push({path:'/editer'});
 			},
 			test(){
 				let {log:ss} = console
